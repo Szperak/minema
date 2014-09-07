@@ -14,15 +14,13 @@ import info.ata4.minecraft.minema.util.config.ConfigContainer;
 import info.ata4.minecraft.minema.util.config.ConfigDouble;
 import info.ata4.minecraft.minema.util.config.ConfigEnum;
 import info.ata4.minecraft.minema.util.config.ConfigInteger;
-import info.ata4.minecraft.minema.util.config.ConfigNumber;
 import info.ata4.minecraft.minema.util.config.ConfigString;
-import info.ata4.minecraft.minema.util.config.ConfigValue;
+import info.ata4.minecraft.minema.util.config.ConfigStringEnum;
 import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
 import javax.imageio.ImageIO;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraftforge.common.config.Configuration;
 import org.lwjgl.opengl.Display;
 
@@ -55,10 +53,11 @@ public class MinemaConfig extends ConfigContainer {
         return formats;
     }
     
-    public final ConfigEnum imageFormat = new ConfigEnum("tga", getImageFormats());
+    public final ConfigStringEnum imageFormat = new ConfigStringEnum("tga", getImageFormats());
     public final ConfigBoolean useVideoEncoder = new ConfigBoolean(false);
     public final ConfigString videoEncoderPath = new ConfigString("");
     public final ConfigString videoEncoderParams = new ConfigString("");
+    public final ConfigEnum<SnapResolution> snapResolution = new ConfigEnum<SnapResolution>(SnapResolution.MOD2);
     
     public final ConfigInteger frameWidth = new ConfigInteger(0, 0, MAX_TEXTURE_SIZE);
     public final ConfigInteger frameHeight = new ConfigInteger(0, 0, MAX_TEXTURE_SIZE);
@@ -83,6 +82,7 @@ public class MinemaConfig extends ConfigContainer {
         register(useVideoEncoder, "useVideoEncoder", CATEGORY_ENCODING);
         register(videoEncoderPath, "videoEncoderPath", CATEGORY_ENCODING);
         register(videoEncoderParams, "videoEncoderParams", CATEGORY_ENCODING);
+        register(snapResolution, "snapResolution", CATEGORY_ENCODING);
         
         register(frameWidth, "frameWidth", CATEGORY_CAPTURING);
         register(frameHeight, "frameHeight", CATEGORY_CAPTURING);
@@ -100,23 +100,39 @@ public class MinemaConfig extends ConfigContainer {
     }
     
     public int getFrameWidth() {
-        if (frameWidth.get() == 0 || !OpenGlHelper.isFramebufferEnabled()) {
-            return Display.getWidth();
+        int width;
+        
+        if (frameWidth.get() == 0) {
+            width = Display.getWidth();
         } else {
-            return frameWidth.get();
+            width = frameWidth.get();
         }
+        
+        if (useVideoEncoder.get()) {
+            width = snapResolution.get().snap(width);
+        }
+        
+        return width;
     }
     
     public int getFrameHeight() {
-        if (frameHeight.get() == 0 || !OpenGlHelper.isFramebufferEnabled()) {
-            return Display.getHeight();
+        int height;
+        
+        if (frameHeight.get() == 0) {
+            height = Display.getHeight();
         } else {
-            return frameHeight.get();
+            height = frameHeight.get();
         }
+        
+        if (useVideoEncoder.get()) {
+            height = snapResolution.get().snap(height);
+        }
+        
+        return height;
     }
 
     public boolean useFrameSize() {
-        return OpenGlHelper.isFramebufferEnabled() && (frameWidth.get() != 0 || frameHeight.get() != 0);
+        return getFrameWidth() != Display.getWidth() || getFrameHeight() != Display.getHeight();
     }
     
     public boolean isSyncEngine() {
