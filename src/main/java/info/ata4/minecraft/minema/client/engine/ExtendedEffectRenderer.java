@@ -28,7 +28,7 @@ public class ExtendedEffectRenderer extends EffectRenderer {
     
     private static final Logger L = LogManager.getLogger();
     
-    private List<EntityFX>[] fxLayers;
+    private List<EntityFX>[][] fxLayers;
     private int particleLimit = 4000;
 
     public ExtendedEffectRenderer(World world, TextureManager textureManager) {
@@ -48,12 +48,10 @@ public class ExtendedEffectRenderer extends EffectRenderer {
         }
         
         int i = fx.getFXLayer();
-
-        if (particleLimit > 0 && fxLayers[i].size() >= particleLimit) {
-            fxLayers[i].remove(0);
-        }
-
-        fxLayers[i].add(fx);
+        int j = fx.func_174838_j() == 1.0F ? 1 : 0;
+        if(fxLayers[i][j].size() >= particleLimit)
+            fxLayers[i][j].remove(0);
+        fxLayers[i][j].add(fx);
     }
 
     public int getParticleLimit() {
