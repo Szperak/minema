@@ -18,6 +18,7 @@ import info.ata4.minecraft.minema.client.config.MinemaConfig;
 import info.ata4.minecraft.minema.util.reflection.PrivateFields;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderGlobal;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 
 /**
@@ -28,7 +29,7 @@ public class ChunkPreloader extends CaptureModule {
     
     private static final Minecraft MC = Minecraft.getMinecraft();
     
-    private WorldRenderer[] worldRenderers;
+    //private WorldRenderer[] worldRenderers;
 
     public ChunkPreloader(MinemaConfig cfg) {
         super(cfg);
@@ -40,21 +41,13 @@ public class ChunkPreloader extends CaptureModule {
             return;
         }
         
-        if (worldRenderers == null) {
-            return;
-        }
-        
-        for (WorldRenderer worldRenderer : worldRenderers) {
-            //if (worldRenderer.) {
-            //    worldRenderer.updateRenderer(MC.renderViewEntity);
-            //}
-        }
+        //Tessellator.getInstance().getWorldRenderer().startDrawing(p_startDrawing_1_);
     }
 
     @Override
     protected void doEnable() throws Exception {
         try {
-            worldRenderers = ReflectionHelper.getPrivateValue(RenderGlobal.class, MC.renderGlobal, PrivateFields.RENDERGLOBAL_WORLDRENDERERS);
+            //worldRenderers = ReflectionHelper.getPrivateValue(RenderGlobal.class, MC.renderGlobal, PrivateFields.RENDERGLOBAL_WORLDRENDERERS);
         } catch (Exception ex) {
             throw new RuntimeException("Can't get worldRenderers field", ex);
         }
