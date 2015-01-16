@@ -136,7 +136,7 @@ public class MinemaConfig extends ConfigContainer {
     }
     
     public boolean isSyncEngine() {
-        return Minecraft.getMinecraft().isSingleplayer() && syncEngine.get();
+        return syncEngine.get();// && Minecraft.getMinecraft().isSingleplayer();
     }
     
     public File getMovieDir() {
