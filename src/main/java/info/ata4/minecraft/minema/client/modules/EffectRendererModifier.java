@@ -9,7 +9,7 @@
  */
 package info.ata4.minecraft.minema.client.modules;
 
-import cpw.mods.fml.relauncher.ReflectionHelper;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import info.ata4.minecraft.minema.client.config.MinemaConfig;
 import info.ata4.minecraft.minema.client.engine.ExtendedEffectRenderer;
 import info.ata4.minecraft.minema.util.reflection.PrivateFields;

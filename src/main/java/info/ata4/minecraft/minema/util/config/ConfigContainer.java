@@ -9,7 +9,7 @@
  */
 package info.ata4.minecraft.minema.util.config;
 
-import cpw.mods.fml.client.config.IConfigElement;
+import net.minecraftforge.fml.client.config.IConfigElement;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;

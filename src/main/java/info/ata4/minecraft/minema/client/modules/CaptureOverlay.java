@@ -9,7 +9,7 @@
  */
 package info.ata4.minecraft.minema.client.modules;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import info.ata4.minecraft.minema.client.config.MinemaConfig;
 import info.ata4.minecraft.minema.client.util.CaptureTime;
 import java.util.List;

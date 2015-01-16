@@ -9,11 +9,11 @@
  */
 package info.ata4.minecraft.minema.client.modules;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.TickEvent.Phase;
-import cpw.mods.fml.common.gameevent.TickEvent.RenderTickEvent;
-import cpw.mods.fml.relauncher.ReflectionHelper;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
+import net.minecraftforge.fml.common.gameevent.TickEvent.RenderTickEvent;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import info.ata4.minecraft.minema.client.config.MinemaConfig;
 import info.ata4.minecraft.minema.util.reflection.PrivateFields;
 import net.minecraft.client.Minecraft;
@@ -45,9 +45,9 @@ public class ChunkPreloader extends CaptureModule {
         }
         
         for (WorldRenderer worldRenderer : worldRenderers) {
-            if (worldRenderer.isInFrustum && worldRenderer.needsUpdate) {
-                worldRenderer.updateRenderer(MC.renderViewEntity);
-            }
+            //if (worldRenderer.) {
+            //    worldRenderer.updateRenderer(MC.renderViewEntity);
+            //}
         }
     }
 

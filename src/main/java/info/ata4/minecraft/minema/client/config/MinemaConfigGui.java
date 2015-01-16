@@ -9,7 +9,7 @@
  */
 package info.ata4.minecraft.minema.client.config;
 
-import cpw.mods.fml.client.config.GuiConfig;
+import net.minecraftforge.fml.client.config.GuiConfig;
 import info.ata4.minecraft.minema.Minema;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.Configuration;

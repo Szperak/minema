@@ -9,7 +9,7 @@
  */
 package info.ata4.minecraft.minema.client.event;
 
-import cpw.mods.fml.common.eventhandler.Cancelable;
+import net.minecraftforge.fml.common.eventhandler.Cancelable;
 import java.nio.ByteBuffer;
 import org.lwjgl.util.Dimension;
 

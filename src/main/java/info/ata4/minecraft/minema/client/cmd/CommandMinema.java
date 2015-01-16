@@ -44,7 +44,7 @@ public class CommandMinema extends CommandBase {
     }
     
     @Override
-    public void processCommand(ICommandSender sender, String[] args) {
+    public void processCommand(ICommandSender sender, String[] args) throws WrongUsageException {
         if (args.length == 0) {
             throw new WrongUsageException(getCommandUsage(sender));
         }
